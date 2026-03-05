@@ -1,0 +1,12 @@
+/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/bin/Debug/net9.0/Library.Domain.deps.json
+/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/bin/Debug/net9.0/Library.Domain.dll
+/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/bin/Debug/net9.0/Library.Domain.pdb
+/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/obj/Debug/net9.0/Library.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/obj/Debug/net9.0/Library.Domain.AssemblyInfoInputs.cache
+/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/obj/Debug/net9.0/Library.Domain.AssemblyInfo.cs
+/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/obj/Debug/net9.0/Library.Domain.csproj.CoreCompileInputs.cache
+/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/obj/Debug/net9.0/Library.Domain.sourcelink.json
+/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/obj/Debug/net9.0/Library.Domain.dll
+/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/obj/Debug/net9.0/refint/Library.Domain.dll
+/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/obj/Debug/net9.0/Library.Domain.pdb
+/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/obj/Debug/net9.0/ref/Library.Domain.dll

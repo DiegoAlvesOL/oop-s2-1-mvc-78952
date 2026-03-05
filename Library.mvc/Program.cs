@@ -4,15 +4,26 @@ using Library.mvc.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// 1. Pegar a string de conexão do MySQL que configuramos no appsettings.json
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
                        throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(connectionString));
+
+// 2. CONFIGURAÇÃO DO MYSQL (Pomelo): Substituímos ApplicationDbContext por LibraryDbContext
+builder.Services.AddDbContext<LibraryDbContext>(options =>
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+// 3. CONFIGURAÇÃO DO IDENTITY: Adicionamos .AddRoles para suportar Admin/Manager (Critério 5)
+builder.Services.AddDefaultIdentity<IdentityUser>(options => 
+    {
+        options.SignIn.RequireConfirmedAccount = false; // Facilitar o teste inicial
+        options.Password.RequireDigit = false;          // Regras de senha mais simples para dev
+        options.Password.RequiredLength = 6;
+    })
+    .AddRoles<IdentityRole>() 
+    .AddEntityFrameworkStores<LibraryDbContext>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -25,13 +36,13 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseAuthentication(); // Certifique-se que Authentication vem antes de Authorization
 app.UseAuthorization();
 
 app.MapStaticAssets();

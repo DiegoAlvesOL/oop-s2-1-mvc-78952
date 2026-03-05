@@ -4,14 +4,14 @@
     "/Users/diego/Documents/Playground/C#/Library.mvc/Library.mvc/Library.mvc.csproj": {}
   },
   "projects": {
-    "/Users/diego/Documents/Playground/C#/Library.mvc/Library.mvc/Library.mvc.csproj": {
+    "/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/Library.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/diego/Documents/Playground/C#/Library.mvc/Library.mvc/Library.mvc.csproj",
-        "projectName": "Library.mvc",
-        "projectPath": "/Users/diego/Documents/Playground/C#/Library.mvc/Library.mvc/Library.mvc.csproj",
+        "projectUniqueName": "/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/Library.Domain.csproj",
+        "projectName": "Library.Domain",
+        "projectPath": "/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/Library.Domain.csproj",
         "packagesPath": "/Users/diego/.nuget/packages/",
-        "outputPath": "/Users/diego/Documents/Playground/C#/Library.mvc/Library.mvc/obj/",
+        "outputPath": "/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/diego/.nuget/NuGet/NuGet.Config"
@@ -43,6 +43,72 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/Users/diego/.dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/diego/Documents/Playground/C#/Library.mvc/Library.mvc/Library.mvc.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/diego/Documents/Playground/C#/Library.mvc/Library.mvc/Library.mvc.csproj",
+        "projectName": "Library.mvc",
+        "projectPath": "/Users/diego/Documents/Playground/C#/Library.mvc/Library.mvc/Library.mvc.csproj",
+        "packagesPath": "/Users/diego/.nuget/packages/",
+        "outputPath": "/Users/diego/Documents/Playground/C#/Library.mvc/Library.mvc/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/diego/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/Library.Domain.csproj": {
+                "projectPath": "/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/Library.Domain.csproj"
+              },
+              "/Users/diego/Documents/Playground/C#/Library.mvc/Library.Tests/Library.Tests.csproj": {
+                "projectPath": "/Users/diego/Documents/Playground/C#/Library.mvc/Library.Tests/Library.Tests.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
           "dependencies": {
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
@@ -56,11 +122,21 @@
               "target": "Package",
               "version": "[9.0.0, )"
             },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.2, )"
+            },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[9.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
               "version": "[9.0.0, )"
             }
@@ -80,6 +156,87 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/Users/diego/.dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/diego/Documents/Playground/C#/Library.mvc/Library.Tests/Library.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/diego/Documents/Playground/C#/Library.mvc/Library.Tests/Library.Tests.csproj",
+        "projectName": "Library.Tests",
+        "projectPath": "/Users/diego/Documents/Playground/C#/Library.mvc/Library.Tests/Library.Tests.csproj",
+        "packagesPath": "/Users/diego/.nuget/packages/",
+        "outputPath": "/Users/diego/Documents/Playground/C#/Library.mvc/Library.Tests/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/diego/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/Library.Domain.csproj": {
+                "projectPath": "/Users/diego/Documents/Playground/C#/Library.mvc/Library.Domain/Library.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.11.1, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.9.2, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.8.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
