@@ -10,7 +10,7 @@ public class Loan
 
     public DateTime LoanDate { get; set; }
     public DateTime DueDate { get; set; }
-    public DateTime? ReturnedDate { get; set; } // Nullable: nulo enquanto não for devolvido
+    public DateTime? ReturnedDate { get; set; }
 
     // Propriedades de navegação (Essenciais para o Entity Framework)
     public virtual Book Book { get; set; } = null!;

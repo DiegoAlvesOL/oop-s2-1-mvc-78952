@@ -7,6 +7,6 @@ public class Member
     public string Email { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
 
-    // Propriedade de navegação: Um membro pode ter vários empréstimos
+    // Propriedade de navegação, um membro pode ter vários empréstimos
     public virtual ICollection<Loan> Loans { get; set; } = new List<Loan>();
 }
