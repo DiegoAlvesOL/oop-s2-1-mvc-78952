@@ -45,8 +45,6 @@ app.UseRouting();
 app.UseAuthentication(); // Certifique-se que Authentication vem antes de Authorization
 app.UseAuthorization();
 
-app.MapStaticAssets();
-
 app.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}")
