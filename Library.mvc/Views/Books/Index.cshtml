@@ -1,0 +1,82 @@
+@model IEnumerable<Library.Domain.Entities.Book>
+
+@{
+    ViewData["Title"] = "Books";
+}
+
+<h1>Books</h1>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Add New Book</a>
+
+<!-- Formulário de busca e filtros -->
+<form method="get" asp-action="Index">
+    <div class="row mb-3">
+        
+        <!-- Campo de busca por título ou autor -->
+        <div class="col-md-4">
+            <input type="text" 
+                   name="searchText" 
+                   value="@ViewData["SearchText"]" 
+                   placeholder="Search by title or author..." 
+                   class="form-control"/>
+        </div>
+
+        <!-- Dropdown de categorias -->
+        <div class="col-md-3">
+            <select name="selectedCategory" class="form-select">
+                <option value="">All Categories</option>
+                @foreach (var category in (IEnumerable<Library.Domain.Enums.BookCategory>)ViewData["CategoryList"])
+                {
+                    <option value="@category" selected="@(ViewData["SelectedCategory"]?.ToString() == category.ToString())">
+                        @category
+                    </option>
+                }
+            </select>
+        </div>
+
+        <!-- Dropdown de disponibilidade -->
+        <div class="col-md-3">
+            <select name="selectedAvailability" class="form-select">
+                <option value="">All</option>
+                <option value="Available" selected="@(ViewData["SelectedAvailability"]?.ToString() == "Available")">Available</option>
+                <option value="OnLoan" selected="@(ViewData["SelectedAvailability"]?.ToString() == "OnLoan")">On Loan</option>
+            </select>
+        </div>
+
+        <!-- Botão de busca -->
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-secondary w-100">Search</button>
+        </div>
+        
+    </div>
+</form>
+
+<!-- Tabela de livros -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Category</th>
+            <th>Available</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.Isbn</td>
+                <td>@book.Category</td>
+                <td>@(book.IsAvailable ? "Yes" : "No")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-bookId="@book.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-bookId="@book.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
