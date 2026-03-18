@@ -32,7 +32,7 @@ public static class DBInitializer
         var memberFaker = new Faker<Member>()
             .RuleFor(member => member.FullName, faker => faker.Name.FullName())
             .RuleFor(member => member.Email, faker => faker.Internet.Email())
-            .RuleFor(member => member.Phone, faker => faker.Phone.PhoneNumber());
+            .RuleFor(member => member.PhoneNumber, faker => faker.Phone.PhoneNumber());
 
         // Lista com os 10 membros usando a regra acima memberFaker
         var generatedMembers = memberFaker.Generate(10);
