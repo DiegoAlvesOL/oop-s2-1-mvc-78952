@@ -17,8 +17,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 // 3. CONFIGURAÇÃO DO IDENTITY: Adicionamos .AddRoles para suportar Admin/Manager (Critério 5)
 builder.Services.AddDefaultIdentity<IdentityUser>(options => 
     {
-        options.SignIn.RequireConfirmedAccount = false; // Facilitar o teste inicial
-        options.Password.RequireDigit = false;          // Regras de senha mais simples para dev
+        options.SignIn.RequireConfirmedAccount = false;
+        options.Password.RequireDigit = false;
         options.Password.RequiredLength = 6;
     })
     .AddRoles<IdentityRole>() 
@@ -27,6 +27,19 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+// 4. POPULAR O BANCO COM DADOS INICIAIS
+// Abrimos um escopo para acessar o banco antes da aplicação iniciar
+using (var serviceScope = app.Services.CreateScope())
+{
+    var databaseContext = serviceScope.ServiceProvider.GetRequiredService<LibraryDbContext>();
+    
+    // Garante que o banco existe e que todas as migrations foram aplicadas
+    databaseContext.Database.Migrate();
+    
+    // Chama o DBInitializer para popular o banco com dados falsos
+    DBInitializer.InsertInitialData(databaseContext);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -42,7 +55,7 @@ else
 app.UseHttpsRedirection();
 app.UseRouting();
 
-app.UseAuthentication(); // Certifique-se que Authentication vem antes de Authorization
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
