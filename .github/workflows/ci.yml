@@ -1,0 +1,35 @@
+name: CI
+
+# Roda automaticamente em push ou Pull Request na branch main
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Baixa o código do repositório
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Configura o .NET 9
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      # 3. Baixa todos os pacotes NuGet necessários
+      - name: Restore packages
+        run: dotnet restore
+
+      # 4. Compila o projeto em modo Release
+      - name: Build project
+        run: dotnet build --configuration Release --no-restore
+
+      # 5. Roda os testes xUnit
+      - name: Run tests
+        run: dotnet test --no-restore --verbosity normal
