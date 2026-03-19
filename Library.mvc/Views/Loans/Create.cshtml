@@ -1,0 +1,41 @@
+@model Library.Domain.Entities.Loan
+
+@{
+    ViewData["Title"] = "New Loan";
+}
+
+<h1>New Loan</h1>
+
+<form method="post" asp-action="Create">
+
+    <!-- Dropdown de livros disponíveis -->
+    <div class="mb-3">
+        <label asp-for="BookId" class="form-label">Book</label>
+        <select asp-for="BookId" class="form-select">
+            <option value="">Select a book...</option>
+            @foreach (var book in (IEnumerable<Library.Domain.Entities.Book>)ViewData["AvailableBooks"])
+            {
+                <option value="@book.Id">@book.Title — @book.Author</option>
+            }
+        </select>
+        <span asp-validation-for="BookId" class="text-danger"></span>
+    </div>
+
+    <!-- Dropdown de membros -->
+    <div class="mb-3">
+        <label asp-for="MemberId" class="form-label">Member</label>
+        <select asp-for="MemberId" class="form-select">
+            <option value="">Select a member...</option>
+            @foreach (var member in (IEnumerable<Library.Domain.Entities.Member>)ViewData["MembersList"])
+            {
+                <option value="@member.Id">@member.FullName</option>
+            }
+        </select>
+        <span asp-validation-for="MemberId" class="text-danger"></span>
+    </div>
+
+    <!-- Botões -->
+    <button type="submit" class="btn btn-primary">Create Loan</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+</form>

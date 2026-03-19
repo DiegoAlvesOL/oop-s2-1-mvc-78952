@@ -1,0 +1,55 @@
+@model IEnumerable<Library.Domain.Entities.Loan>
+
+@{
+    ViewData["Title"] = "Loans";
+}
+
+<h1>Loans</h1>
+
+<a asp-action="Create" class="btn btn-primary mb-3">New Loan</a>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Book</th>
+        <th>Member</th>
+        <th>Loan Date</th>
+        <th>Due Date</th>
+        <th>Returned Date</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var loan in Model)
+    {
+        <tr>
+            <td>@loan.Book.Title</td>
+            <td>@loan.Member.FullName</td>
+            <td>@loan.LoanDate.ToShortDateString()</td>
+            <td>@loan.DueDate.ToShortDateString()</td>
+            <td>@(loan.ReturnedDate.HasValue ? loan.ReturnedDate.Value.ToShortDateString() : "-")</td>
+            <td>
+                @if (loan.ReturnedDate.HasValue)
+                {
+                    <span class="badge bg-success">Returned</span>
+                }
+                else if (loan.DueDate < DateTime.Today)
+                {
+                    <span class="badge bg-danger">Overdue</span>
+                }
+                else
+                {
+                    <span class="badge bg-warning text-dark">Active</span>
+                }
+            </td>
+            <td>
+                @if (!loan.ReturnedDate.HasValue)
+                {
+                    <a asp-action="Return" asp-route-loanId="@loan.Id" class="btn btn-sm btn-success">Mark Returned</a>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

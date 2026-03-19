@@ -1,0 +1,35 @@
+@model Library.Domain.Entities.Loan
+
+@{
+    ViewData["Title"] = "Return Book";
+}
+
+<h1>Return Book</h1>
+
+<p class="text-danger">Are you sure you want to mark this loan as returned?</p>
+
+<!-- Exibe os dados do empréstimo antes de confirmar a devolução -->
+<table class="table">
+    <tr>
+        <th>Book</th>
+        <td>@Model.Book.Title</td>
+    </tr>
+    <tr>
+        <th>Member</th>
+        <td>@Model.Member.FullName</td>
+    </tr>
+    <tr>
+        <th>Loan Date</th>
+        <td>@Model.LoanDate.ToShortDateString()</td>
+    </tr>
+    <tr>
+        <th>Due Date</th>
+        <td>@Model.DueDate.ToShortDateString()</td>
+    </tr>
+</table>
+
+<!-- Botões de confirmação e cancelamento -->
+<form method="post" asp-action="Return" asp-route-loanId="@Model.Id">
+    <button type="submit" class="btn btn-success">Yes, Mark as Returned</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
