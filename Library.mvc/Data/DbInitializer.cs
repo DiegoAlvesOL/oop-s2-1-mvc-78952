@@ -1,6 +1,7 @@
 using Bogus;
 using Library.Domain.Entities;
 using Library.Domain.Enums;
+using Microsoft.AspNetCore.Identity;
 
 namespace Library.mvc.Data;
 
@@ -97,5 +98,36 @@ public static class DBInitializer
         contextLibrary.Loans.AddRange(generatedLoans);
         contextLibrary.SaveChanges();
     }
+    
+    public static async Task InsertAdminUser(
+        UserManager<IdentityUser> userManager,
+        RoleManager<IdentityRole> roleManager)
+    {
+        var adminRoleExists = await roleManager.RoleExistsAsync("Admin");
+        if (!adminRoleExists)
+        {
+            await roleManager.CreateAsync(new IdentityRole("Admin"));
+        }
+        
+        var adminEmail = "admin@library.com";
+        var adminUserExists = await userManager.FindByEmailAsync(adminEmail);
+        if (adminUserExists == null)
+        {
+            var adminUser = new IdentityUser
+            {
+                UserName = adminEmail,
+                Email = adminEmail,
+                EmailConfirmed = true
+            };
+            
+            var creationResult = await userManager.CreateAsync(adminUser, "Admin@123");
+            
+            if (creationResult.Succeeded)
+            {
+                await userManager.AddToRoleAsync(adminUser, "Admin");
+            }
+        }
+    }
+    
     
 }

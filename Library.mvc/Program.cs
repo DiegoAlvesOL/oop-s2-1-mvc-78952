@@ -33,12 +33,12 @@ var app = builder.Build();
 using (var serviceScope = app.Services.CreateScope())
 {
     var databaseContext = serviceScope.ServiceProvider.GetRequiredService<LibraryDbContext>();
+    var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     
-    // Garante que o banco existe e que todas as migrations foram aplicadas
     databaseContext.Database.Migrate();
-    
-    // Chama o DBInitializer para popular o banco com dados falsos
     DBInitializer.InsertInitialData(databaseContext);
+    await DBInitializer.InsertAdminUser(userManager, roleManager);
 }
 
 // Configure the HTTP request pipeline.
